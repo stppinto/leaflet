@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gala Galore (Pangasinan)</title>
+<style>
+    body{
+        background-color: gold; 
+    }
+    #map-canvas{
+        height:400px;
+        width:343px;
+        margin-top: 7px;
+    }
+    .container {
+        width: 297px;
+        height: 100%;
+        background-color: gold;
+    }
+    input[type=text] {
+        color: black;
+        font-family: Berlin Sans FB;
+        width: 93%;
+        border--sizing:border--box;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        font-size: 15px;
+        background: white;
+        background-image:url('image/search.png');
+        background-size:23px 23px;
+        background-position: 1px 1px;
+        background-repeat: no-repeat;
+        padding: 1px 25px 6px 40px;
+        margin-top: 0px;
+    }
+    .logo {
+    width: 343px;
+    padding: 1px;
+    margin-left: 0px;
+    margin-top: 1px;
+    }
+    .logo1 {
+    width: 150px;
+    padding: 0px;
+    margin-top: 4px;
+    margin-left: 40px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin-left: 2px;    
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <button onclick="goBack()" class="button">BACK</button>
+    <header>
+        <img src="image/header6.png" alt="" class="logo">
+    </header>
+    <center><input type="text" id="mapsearch" placeholder="Search place here.." size="50"></center><br>
+    <div id="map-canvas"></div>
+    <br>
+    <header>
+        <center><img src="image/logo.png" alt="" class="logo1"></center>
+    </header>
+    
+<script>
+function goBack() {
+    window.history.back();
+    }
+    var map, infoWindow;
+    function initMap(){
+    map = new google.maps.Map(document.getElementById('map-canvas'),{
+        center:{
+          lat: 15.8949,
+          lng: 120.2863
+        },
+        zoom: 9
+      });
+    infoWindow = new google.maps.InfoWindow;
+
+    if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+        };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('You are here!');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+    // Array of markers
+    var markers = [
+    {
+    coords:{lat: 16.111386, lng: 119.802280},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Ignacio Gas Station</b><br/>Agno, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.111170, lng: 119.799770},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Natividad Gas Station</b><br/>Agno, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.115060, lng: 119.800145},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V</b><br/>Rizal Street, Poblacion East, Agno, 2408 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.115664, lng: 119.802216},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Agno, 2408 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.896107, lng: 120.238463},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Aguilar, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.888159, lng: 120.237774},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Prime Energy Gas Station</b><br/>Romulo Hwy, Aguilar, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.902006, lng: 120.237779},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V</b><br/>Romulo Hwy, Aguilar, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.900993, lng: 120.238122},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gasoline Station</b><br/>Aguilar, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.176849, lng: 119.972028},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>Olongapo-Bugallon Rd., Palamis, Alaminos, 2404 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.154294, lng: 119.990598},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>San Vicente Health Center, Olongapo-Bugallon Rd, Poblacion, Alaminos, 2404 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.162192, lng: 119.982360},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Olongapo-Bugallon Rd, Poblacion, Alaminos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.168444, lng: 119.961413},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>A Gas Station</b><br/>Alaminos-Bani Rd, Alaminos, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.133432, lng: 119.971012},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Amigo Gasoline Station</b><br/>Alaminos, 2404 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.846191, lng: 120.520761},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Prime Energy Gas Station</b><br/>Alcala, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.839894, lng: 120.505001},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Blue Star Gas Station</b><br/>Alcala-Bayambang Rd, Alcala, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.855413, lng: 120.531524},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>San Pedro Ili Gas Station</b><br/>Carmen-Alcala Rd, Alcala, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.855413, lng: 120.540796},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V Gas Station</b><br/>Carmen-Alcala Rd, Alcala, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.831379, lng: 120.554096},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>3 Cs Gasoline Station</b><br/>San Pedro Apartada, Bayan ng Alcala, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.295863, lng: 119.951611},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Anda Rd, Anda, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.291340, lng: 119.946769},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel Anda Station</b><br/>Anda, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.030707, lng: 120.631562},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Crest Gasoline Station</b><br/>Binalonan-Asingan Rd, Asingan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.030206, lng: 120.634823},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>Binalonan-Asingan Rd, Asingan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.005136, lng: 120.670245},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Asingan Gasoline Station</b><br/>Asingan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.030707, lng: 120.631562},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Santa Maria - Binalonan Rd, Asingan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.898760, lng: 120.677972},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mount Balungao Gas Station</b><br/>Umingan - Rosales Rd, Balungao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.902235, lng: 120.698994},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mt. Balungao Gasoline Station</b><br/>Pugaro, Balungao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.897776, lng: 120.681914},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Tiger Petrol Station</b><br/>Balungao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.895162, lng: 120.658517},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mt. Balungao Gasoline Station</b><br/>Umingan - Rosales Rd, Balungao, 2442 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.181987, lng: 119.859222},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Bani Gas Station</b><br/>Bani, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.187422, lng: 119.870550},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Alaminos - Bani Rd, Bani, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.186268, lng: 119.861110},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Sea Oil Gas Station</b><br/>Bani, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.190554, lng: 119.893205},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Gas Station</b><br/>Alaminos - Bani Rd, Bani, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.881994, lng: 120.388547},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Don Podring Gasoline Station</b><br/>Basista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.890245, lng: 120.385114},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Basista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.853518, lng: 120.400886},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gasoline Station</b><br/>Basista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.854362, lng: 120.403660},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Jorros Gasoline Station</b><br/>Basista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.859067, lng: 120.399025},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station Station</b><br/>Basista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.810988, lng: 120.461133},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Amigo Gas Station</b><br/>Alcala - Bayambang Rd, Nibaliw Sur, Bautista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.811251, lng: 120.461853},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuels </b><br/>Alcala - Bayambang Rd, Nibaliw Sur, Bautista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.811677, lng: 120.464204},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petrolinc Gas Station</b><br/>Alcala - Bayambang Rd, Bautista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.810989, lng: 120.474286},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Pine Oil</b><br/>Poblacion, Bautista, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.807629, lng: 120.457628},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Camiling - Bayambang Rd, Bayambang, 2423 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.805650, lng: 120.458314},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Bayambang</b><br/>Camiling - Bayambang Rd, Bayambang, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.800338, lng: 120.458170},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Bayambang Slaugther House, Del Pilar - Telbang Brgy Rd, Bayambang, 2423 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.813652, lng: 120.456135},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petrolinc</b><br/>Bayambang, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.817622, lng: 120.451095},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Bayambang, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.047338, lng: 120.585730},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>National Highway,NH3, Binalonan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.047916, lng: 120.595892},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mile Age Gasoline Station</b><br/>Mckinley St, Binalonan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.046526, lng: 120.586383},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V</b><br/>National Highway,NH3, Binalonan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.029930, lng: 120.265565},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>Dagupan - Binmaley Rd., Poblacion, Binmaley, 2417 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.026986, lng: 120.271114},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Amigo Gasoline Station</b><br/>Dagupan - Binmaley Rd., Binmaley, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.027590, lng: 120.260097},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel - Gas Station</b><br/>National Rd, Binmaley, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.022949, lng: 120.276950},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Dagupan - Binmaley Rd., Binmaley, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.032558, lng: 120.268722},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>AGasoline Station</b><br/>San Isidro Sur, Binmaley, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.295817, lng: 119.913648},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Catubig, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.392509, lng: 119.892690},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>E Cas, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.295817, lng: 119.913648},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Unix - Boltex - Jesus Celeste </b><br/>Poblacion National Highway, Bolinao, Pangasinan, Regional Hwy 5, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.380045, lng: 119.893715},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Catubig, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.370824, lng: 119.891870},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>Liwa - Liwa, Regional Hwy 5, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.357542, lng: 119.857449},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Sea Oil Gasoline Station</b><br/>Balungasay, Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.971546, lng: 120.216543},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Toti Gas Station</b><br/>Socony - Salasa Bugallon, Pangasinan, Bayan ng Bugallon, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.971660, lng: 120.216802},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Gas Station</b><br/>Quezon avenue, Bugallon, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.971302, lng: 120.217600},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Quezon avenue, Bugallon, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.952290, lng: 120.217526},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>15B Romulo Hwy (Tarlac-Pangasinan Rd.), Poblacion, Bugallon, 2416 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.951538, lng: 120.217662},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gas Station</b><br/>Tarlac-Pangasinan Rd, Bugallon, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.055583, lng: 119.865378},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Beta Gas Station</b><br/>Burgos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.057050, lng: 119.873220},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Burgos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.066507, lng: 119.886375},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Desiderio Fuel</b><br/>Brgy. Tambacan, Burgos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.012627, lng: 120.357482},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel</b><br/>Poblacion Road, Calasiao, 2418 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.999862, lng: 120.359967},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>Mancup Rd.,  Calasiao, 2418 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.004546, lng: 120.359176},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel</b><br/>Brgy. Mancup Road, Calasiao, 2418 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.021174, lng: 120.360967},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>SEAOIL</b><br/>San Miguel, Calasiao, Pangasinan McArthur Highway, Bayan ng Calasiao, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.017184, lng: 120.355281},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>GT Oil</b><br/>Mac Arthur Highway, San Miguel, Calasiao, Pangasinan, Bayan ng Calasiao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.038377, lng:  120.333677},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>Perez Blvd., Pogo Chico, Dagupan City, 2400 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.046621, lng: 120.348449,},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>AB Fernandez E Ave, Dagupan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.046189, lng: 120.349680},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>AB Fernandez E Ave, Dagupan, 2400 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.067117, lng: 120.335573,},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>37 Arellano Street, Bonuan, Dagupan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.071771, lng: 120.336568},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>San Fabian - Bonuan - Dagupan Diversion Rd, Bonuan, Dagupan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.988611, lng: 119.874998},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Colobong Gas Station</b><br/>Zambales - Pangasinan Rd, Dasol, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.836558, lng: 119.915610},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>Infanta, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.835007, lng: 119.915153},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Infanta, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.842116, lng: 119.914769},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Infanta, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.058570, lng: 120.109171},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Tobuan Gas Station</b><br/>Labrador - Sual Rd, Labrador, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.041440, lng: 120.133936},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Alaminos Gasoline Service Station - (Labrador Branch)</b><br/>Laois Labrador Pangasinan, Labrador, 2402 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.021751, lng: 120.148360},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Unifuel</b><br/>Lingayen - Labrador Rd, Labrador, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.050316, lng: 120.551583},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Laoac, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.048219, lng: 120.545780},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Big C Gasoline Station</b><br/>Agbayani Rd, Laoac, 2437 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.004251, lng: 120.234088},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Alaminos Gasoline Service Station - (Lingayen Branch)</b><br/>Quibaol Lingayen Pangasinan, Lingayen, 2401 Pangasinan </div>"
+    },
+    {
+    coords:{lat: 16.009694, lng: 120.224622},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Unikite Gas Station</b><br/>National Rd, Lingayen, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.017659, lng: 120.231300},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel Gas Station</b><br/>Lingayen, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.022195, lng: 120.234761},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Prime</b><br/>5 Avenida Rizal E Rd, Poblacion, Lingayen, 2401 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.025150, lng: 120.228522},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total (Lingayen, Pangasinan)</b><br/>Artacho St, Poblacion, Lingayen, 2401 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.025214, lng: 120.245121},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gas Station</b><br/>Lingayen, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.073549, lng: 119.934594},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Alaminos Gas Station</b><br/>Mabini, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.068461, lng: 119.944387},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Adelfa Gas Station</b><br/>Mabini, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.920727, lng: 120.428446},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Villasis - Malasiqui Rd, Malasiqui, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.919757, lng: 120.420235},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>REG Gas Filling Station</b><br/>Quezon Boulevard, Malasiqui, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.910949, lng: 120.416096},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total</b><br/>Camiling-Malasiqui-Sta. Barbara Rd., Gomez, Malasiqui, 2421 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.937079, lng: 120.437870},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>Malasiqui, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.048405, lng: 120.476885},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Milo Street, Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.046898, lng: 120.479205},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gas Station</b><br/>Binalonan - Dagupan Hwy, Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.044644, lng: 120.487238},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Christine's  Gas Station</b><br/>Rizal Street, Poblacion, Manaoag, Pangasinan, Manaoag, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.045201, lng: 120.499098},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Gulf Gas Station</b><br/>Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.045245, lng: 120.499126},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel</b><br/>Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.034032, lng: 120.496644},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Squadron Gasoline Station</b><br/>Nalsian, Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.064873, lng: 120.404647},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>amigo gas station</b><br/>Mangaldan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.076033, lng: 120.400774},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel</b><br/>Pangasinan-La Union Rd, Mangaldan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.064143, lng: 120.403500},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Ydia St, Mangaldan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.061676, lng: 120.401300},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Veetron Gas Station</b><br/>National Road, Bari, Bayan ng Mangaldan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.080657, lng: 120.397062},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gas Station</b><br/>Salay, Mangaldan, Pangasinan, Mangaldan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.074218, lng: 120.401448},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total (Mangaldan, Pangasinan)</b><br/>Rizal Ave, Poblacion, Mangaldan, 2432 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.07399, lng: 120.401550},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Rizal Ave, Mangaldan, 2400 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.795425, lng: 120.289353},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total (Mangatarem)</b><br/>Romulo Hwy (Tarlac-Pangasinan Rd.), Umangan, Mangatarem, 2413 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.793754, lng: 15.793754},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Gasoline Station</b><br/>Umangan, Mangatarem, Pangasinan along, Romulo Hwy, Mangatarem, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.796609, lng: 120.286995},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Mangatarem, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.775439, lng: 120.312261},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Fern Gas Station</b><br/>Bueno Bridge, Mangatarem, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.827250, lng: 120.268061},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Hermogeno Gas Station</b><br/>221 Tarlac - Pangasinan Rd, Mangatarem, 2413 Tarlac - Pangasinan Rd, Mangatarem, 2413 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.024359, lng: 120.448826},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mapandan Petron Gasoline Station</b><br/>Mapandan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.024955, lng: 120.449979},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>456 Pandan Ave, Mapandan, 2429 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.021627, lng: 120.458954},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Stalion Gasoline Station</b><br/>Mapandan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.926110, lng: 120.838519},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel Gasoline Station</b><br/>Umingan, Rizal St, Natividad, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.104054, lng: 120.541014},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Pozorrubio, 2435 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.118920, lng: 120.541114},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>MacArthur Highway, Pozorrubio, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.115895, lng: 120.543463},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Gas Station</b><br/>MacArthur Highway, Pozorrubio, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.894606, lng: 120.654160},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Brgy Carmay East, Rosales, 2441 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.896146, lng: 120.617752},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>North Atlantic Gasoline Station</b><br/>Rosales, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.896548, lng: 120.619385},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mile Age Gasoline Station</b><br/>Rosales, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.897456, lng: 120.633031},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>GT OIL</b><br/>Rosales, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.882713, lng: 120.598963},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Mc Arthur Hwy, Rosales, 2441 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.88485, lng: 120.598121},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>Manila N Rd, Rosales, 2441 Pangasinan</div>"
+    },
+      {
+    coords:{lat: 15.923388, lng: 120.344720},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Palaris St, San Carlos City, 2420 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.923590, lng: 120.350444},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Perez Station</b><br/>Perez Blvd, San Carlos City, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.919991, lng: 120.354225},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum</b><br/>San Carlos City, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.930207, lng: 120.346746},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum</b><br/>San Carlos City, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.934026, lng: 120.347348},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Amigo Gasoline Station</b><br/>San Carlos City, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.125596, lng: 120.405641},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Universal Gas Station</b><br/>Quezon Highway, San Fabian, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.119462, lng: 120.401343},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station</b><br/>Quezon Highway, San Fabian, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.118822, lng: 120.401024},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Quezon Highway, San Fabian, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.121292, lng: 120.404964},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Golf Petroleum Refilling Station</b><br/>Alvear St, San Fabian, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.104234, lng: 120.394371},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex</b><br/>Quezon Highway, Longos Proper, San Fabian, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.063379, lng: 120.666748},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Eastern Gasoline Station</b><br/>San Manuel, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.062042, lng: 120.656402},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Total (San Manuel, Pangasinan)</b><br/>Binalonan-San Manuel Rd., Guiset Sur (Pob.), San Manuel, 2438 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.982974, lng: 120.811740},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Gasoline Station</b><br/>San Quintin, 2444 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.148268, lng: 120.523138},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Sison, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.172177, lng: 120.517787},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V Sison</b><br/>Manila N Rd, Sison, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.996103, lng: 120.405735},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Amigo Gasoline Station</b><br/>Pob. Sur, Sta. Barbara, Pangasinan, Bayan ng Santa Barbara, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.999309, lng: 120.404477},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Geo Fuel Gas Station</b><br/>Sta. Barbara-Malasiqui-Bayambang-Wawa-Camiling Road, Santa Barbara, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.003984, lng: 120.407359},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>EASTERN PETROLEUM</b><br/>MacArthur Highway, Santa Barbara, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.006381, lng: 120.402784},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Flying V</b><br/>Urdaneta Junction - Dagupan Rd, Santa Barbara, 2419 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.006931, lng: 120.402034},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell</b><br/>Urdaneta Junction - Dagupan Rd, Santa Barbara, 2400 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.006880, lng: 120.402003},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Fuel</b><br/>Urdaneta Junction - Dagupan Rd, Santa Barbara, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.960210, lng: 120.679668},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>Paitan Sta. Maria, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.088738, lng: 120.024304},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Paitan Gasoline Station</b><br/>Sual, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.081837, lng: 120.048162},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Sual, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.003505, lng: 120.782531},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Tayug - San Quintin Rd, Tayug, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.022697, lng: 120.746230},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Leos Gas</b><br/>Tayug, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.026805, lng: 120.745651},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Caltex Gas Station</b><br/>Tayug - San Nicolas Rd, Tayug, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.923624, lng: 120.822557},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>San Jose - Carmen Road, Umingan, 2443 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.925662, lng: 120.832806},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gas Station</b><br/>Umingan, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.847963, lng: 120.325608},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>STriStar Gasoline Station</b><br/>Urbiztondo, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.826205, lng: 120.335719},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron</b><br/>Rizal St, Urbiztondo, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.978601, lng: 120.571160},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>Mc Arthur Highway, Urdaneta City, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.978605, lng: 120.571208},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Rodolfo Latorre Gas Station</b><br/>National Highway, Alaminos, Urdaneta City, 2404 Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.979414, lng: 120.570581},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Sea Oil</b><br/>Urdaneta City, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.930642, lng: 120.614617},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gasoline Station</b><br/>zone 1 brgy.piaz, Villasis, 2427 Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.893814, lng: 120.593045},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Petron Gas Station Villasis</b><br/>MacArthur Highway, Villasis, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.899411, lng: 120.588583},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Shell Gasoline Station</b><br/>Shell Gasoline Station</div>"
+    },
+     {
+    coords:{lat: 16.069511, lng: 120.439674},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Centrum Gas Station</b><br/>San Jacinto - Manaoag Rd, San Jacinto, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 16.072854, lng: 120.441048},
+    iconImage: "markers/gas.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>San Jacinto Shell Station</b><br/>Barangay Magsaysay, San Jacinto, San Jacinto, Pangasinan</div>"
+    }
+    ];
+
+    // Loop through markers
+    for(var i = 0;i < markers.length;i++){
+        // Add marker
+        addMarker(markers[i]);
+    }
+
+    // Add marker Function
+    function addMarker(props){
+       var marker = new google.maps.Marker({
+        position:props.coords,
+        map:map,
+        icon:props.iconImage
+      });
+    
+    // Check content
+    if(props.content){
+        var infoWindow = new google.maps.InfoWindow({
+            content:props.content, 
+            maxWidth: 300, 
+            maxHeight: 300
+        });
+
+    marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+        });
+
+    
+    // Searchbox
+    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+
+    //Place change event on search box
+    google.maps.event.addListener(searchBox, 'places_changed', function(){
+      
+      //console.log(searchBox.getPlaces());
+      var places = searchBox.getPlaces();
+
+      //bound
+      var bounds = new google.maps.LatLngBounds();
+      var i, place;
+
+      for (i=0; place=places[i]; i++) {
+
+        //console.log(place.geometry.location);
+        bounds.extend(place.geometry.location);
+      }
+      map.fitBounds(bounds); //fit to bound
+      map.setZoom(15); //set zoom
+        });  
+        }  
+    }
+}
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLSUE3_YCezBaiBFlszRVk4yOLZgzC9Rc&libraries=places&callback=initMap"
+        async defer></script>
+</body>
+</html>

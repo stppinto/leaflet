@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gala Galore (Pangasinan)</title>
+<style>
+    body{
+        background-color: gold; 
+    }
+    #map-canvas{
+        height:400px;
+        width:343px;
+        margin-top: 7px;
+    }
+    .container {
+        width: 297px;
+        height: 100%;
+        background-color: gold;
+    }
+    input[type=text] {
+        color: black;
+        font-family: Berlin Sans FB;
+        width: 93%;
+        border--sizing:border--box;
+        border: 1px solid yellow;
+        border-radius: 5px;
+        font-size: 15px;
+        background: white;
+        background-image:url('image/search.png');
+        background-size:23px 23px;
+        background-position: 1px 1px;
+        background-repeat: no-repeat;
+        padding: 1px 25px 6px 40px;
+        margin-top: 0px;
+    }
+    .logo {
+    width: 343px;
+    padding: 1px;
+    margin-left: 0px;
+    margin-top: 1px;
+    }
+    .logo1 {
+    width: 150px;
+    padding: 0px;
+    margin-top: 4px;
+    margin-left: 40px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 8px;
+    margin-left: 2px;    
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <button onclick="goBack()" class="button">BACK</button>
+    <header>
+        <img src="image/header5.png" alt="" class="logo">
+    </header>
+    <center><input type="text" id="mapsearch" placeholder="Search place here.." size="50"></center><br>
+    <div id="map-canvas"></div>
+    <br>
+    <header>
+        <center><img src="image/logo.png" alt="" class="logo1"></center>
+    </header>
+    
+<script>
+function goBack() {
+    window.history.back();
+    }
+    var map, infoWindow;
+    function initMap(){
+    map = new google.maps.Map(document.getElementById('map-canvas'),{
+        center:{
+          lat: 15.8949,
+          lng: 120.2863
+        },
+        zoom: 9
+      });
+    infoWindow = new google.maps.InfoWindow;
+
+    if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+        };
+
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('You are here!');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        
+    // Array of markers
+    var markers = [
+    {
+    coords:{lat: 16.112472, lng: 119.802179},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Dagupan Bus Terminal</b><br/>Agno, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.112286, lng: 119.802968},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Agno, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.153537, lng: 119.982300},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Alaminos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.154032, lng: 119.982088},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Victory Liner Bus Terminal</b><br/>Alaminos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.155295, lng: 119.979986},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Mhel Bhen Bus Terminal</b><br/>Alaminos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.112472, lng: 119.802179},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Philippine Rabbit Bus Corp. Terminal</b><br/>Alaminos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.289748, lng: 119.949980},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Anda, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.389107, lng: 119.896185},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Dagupan Bus Terminal</b><br/>Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.387377, lng: 119.893107},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Bolinao, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.042490, lng: 120.345233},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Bayambang-Dagupan Mini-Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.041634, lng: 120.345033},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Dominion Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.042778, lng: 120.344120},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.042697, lng: 120.343860},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Victory Liner Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.042705, lng: 120.344000},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Solid North Inc. Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.044132, lng: 120.343826},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Dagupan Bus Co. Inc. Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.044897, lng: 120.343229},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Dagupan City Transport Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.046302, lng: 120.343795},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Alaminos City Bus Terminal</b><br/>Dagupan, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.024410, lng: 120.241472},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Victory Liner Bus Terminal</b><br/>Lingayen, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 16.041128, lng: 120.489014},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>Manaoag, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.878720, lng: 120.600743},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Rosales Transport Terminal</b><br/>Rosales, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.939242, lng: 120.345609},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>Five Star Bus Terminal</b><br/>San Carlos, Pangasinan</div>"
+    },
+    {
+    coords:{lat: 15.938192, lng: 120.346310},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>De Leon Express Bus Terminal</b><br/>San Carlos, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.930187, lng: 120.346160},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>San Carlos CityCommon Public Transport Terminal</b><br/>San Carlos, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.938192, lng: 120.346310},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>De Leon Express Bus Terminal</b><br/>San Carlos, Pangasinan</div>"
+    },
+     {
+    coords:{lat: 15.924450, lng: 120.349168},
+    iconImage: "markers/bus.png",
+    content: "<div style='float:center'></div><div style='float:center; padding: 10px;'><b>First North Luzon Transit Inc. Bus Terminal</b><br/>San Carlos, Pangasinan</div>"
+    },
+
+
+    ];
+
+    // Loop through markers
+    for(var i = 0;i < markers.length;i++){
+        // Add marker
+        addMarker(markers[i]);
+    }
+
+    // Add marker Function
+    function addMarker(props){
+       var marker = new google.maps.Marker({
+        position:props.coords,
+        map:map,
+        icon:props.iconImage
+      });
+    
+    // Check content
+    if(props.content){
+        var infoWindow = new google.maps.InfoWindow({
+            content:props.content, 
+            maxWidth: 300, 
+            maxHeight: 300
+        });
+
+    marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+        });
+
+    
+    // Searchbox
+    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+
+    //Place change event on search box
+    google.maps.event.addListener(searchBox, 'places_changed', function(){
+      
+      //console.log(searchBox.getPlaces());
+      var places = searchBox.getPlaces();
+
+      //bound
+      var bounds = new google.maps.LatLngBounds();
+      var i, place;
+
+      for (i=0; place=places[i]; i++) {
+
+        //console.log(place.geometry.location);
+        bounds.extend(place.geometry.location);
+      }
+      map.fitBounds(bounds); //fit to bound
+      map.setZoom(15); //set zoom
+        });  
+        }  
+    }
+}
+</script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLSUE3_YCezBaiBFlszRVk4yOLZgzC9Rc&libraries=places&callback=initMap"
+        async defer></script>
+</body>
+</html>
