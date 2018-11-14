@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"></script>
+    <script src="https://cdn.klokantech.com/mapbox-gl-js/v0.43.0/mapbox-gl.js"></script>
+    <script src="https://cdn.klokantech.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.klokantech.com/mapbox-gl-js/v0.43.0/mapbox-gl.css" />
     <title>Gala Galore (Pangasinan)</title>
-<style>
+    <style>
     body{
         background-color: gold; 
     }
-    #map-canvas{
+    #map{
         height:400px;
         width:343px;
         margin-top: 7px;
@@ -57,323 +60,66 @@
     display: inline-block;
     font-size: 8px;
     margin-left: 2px;    
-}
-</style>
-</head>
-<body>
-<div class="container">
+    }
+    </style>
+  </head>
+  <body><div class="container">
     <button onclick="goBack()" class="button">BACK</button>
     <header>
         <img src="image/header4.png" alt="" class="logo">
     </header>
-    <center><input type="text" id="mapsearch" placeholder="Search place here.." size="50"></center>
-    <div id="map-canvas"></div>
+    <center><input type="text" id="mapsearch" placeholder="Search place here.."></center>
+    <div id="map"></div>
     <header>
         <center><img src="image/logo.png" alt="" class="logo1"></center>
     </header>
-    
-<script>
-function goBack() {
-    window.history.back();
-    }
-    var map, infoWindow;
-    function initMap(){
-    map = new google.maps.Map(document.getElementById('map-canvas'),{
-        center:{
-          lat: 15.8949,
-          lng: 120.2863
-        },
-        zoom: 9
-      });
-    infoWindow = new google.maps.InfoWindow;
-
-    if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-        };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('You are here!');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+    <script>
+        function goBack() {
+        window.history.back();
         }
+      var map = L.map('map').setView([15.8949, 120.2863], 9);
+      var gl = L.mapboxGL({
+        attribution: '<a href="https://www.maptiler.com/license/maps/" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>',
+        accessToken: 'not-needed',
+        style: 'https://maps.tilehosting.com/styles/streets/style.json?key=hZqrAMXvwY6KTIFwtjlC'
+      }).addTo(map);
 
+    //GEOLOCATION
+      map.locate({setView: true, maxZoom: 16});
+    //LOCATION FOUND
+    function onLocationFound(e) {
+    var radius = e.accuracy / 2;
 
-    // Array of markers
-    var markers = [
-    {
-    coords:{lat: 16.116060, lng: 119.802583},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Agno Public Market</b><br/>Agno, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.889953, lng: 120.237833},
-    iconImage: "markers/market.png",
-    content: "<div style='float:'></div><div style='float:center; padding: 2px;'><b>Aguilar Public Market</b><br/>Romulo Hwy, Aguilar, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.156647, lng: 119.981683},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Suki Wet and Dry Market</b><br/>Sison Street, Poblacion, Alaminos, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.846761, lng: 120.521881},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Alcala Old Market</b><br/>Alcala, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.289675, lng: 119.949031},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Anda Public Market</b><br/>Anda, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.002201, lng: 120.669421},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Asingan Public Market</b><br/>Asingan, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.897941, lng: 120.672634},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Balungao Public Market</b><br/>Balungao, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.181733, lng: 119.861722},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Bani Public Market</b><br/>Bani, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.853733, lng: 120.402088},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Basista Public Market</b><br/>Basista, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.810172, lng: 120.475631},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Bautista Public Market</b><br/>Bautista, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.808596, lng: 120.457726},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Bayambang Quadri Centennial Public Market</b><br/>Bayambang, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.047934, lng: 120.591762},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Binalonan Public Market</b><br/>Binalonan, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.027650, lng: 120.269209},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Binmaley Public Market</b><br/>Binmaley, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.388035, lng: 119.894177},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Bolinao Wet Market</b><br/>Efren Peralta, Bolinao, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.954875, lng: 120.219368},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Bugallon Public Market</b><br/>Cervantes St, Bugallon, Pangasinan</div>"
-    },
-     {
-    coords:{lat: 15.991001, lng: 119.795654},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Pogoruac Public Market</b><br/>Burgos, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.988951, lng: 119.875474},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Dasol Public Market</b><br/>Poblacion, Dasol, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.008217, lng: 120.357511},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Calasiao Public Market</b><br/>Calasiao, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.042988, lng: 120.336124},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>DAGUPAN MALIMGAS PUBLIC MARKET</b><br/>Downtown District, Dagupan, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.826196, lng: 119.905751},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Infanta Public Market</b><br/>Infanta, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.026263, lng: 120.147765},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Labrador Public Market</b><br/>Labrador, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.020351, lng: 120.231963},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Aqua-Agri Market</b><br/>Poblacion, Lingayen, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.069744, lng: 119.941436},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Mabini Public Market</b><br/>Mabini, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.919908, lng: 120.415050},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Malasiqui Public Market</b><br/>Quezon Boulevard, Malasiqui, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.044659, lng: 120.486007},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Manaoag Public Market</b><br/>Milo St, Manaoag, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.067065, lng: 120.403891},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Mangaldan Public Market</b><br/>Mangaldan, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.791658, lng: 120.293635},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Mangatarem Public Market</b><br/>Mangatarem, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.025953, lng: 120.451160},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>MAPANDAN PUBLIC MARKET</b><br/>Pandan Ave, Mapandan,Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.028099, lng: 120.748456},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Tayug Public Market</b><br/>Tayug, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.982954, lng: 120.812384},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>San Quintin Public Market</b><br/>Dry Goods Section Building, Public Market Compound, San Quintin, Pangasinan</div>"
-    },
-     {
-    coords:{lat: 16.070303, lng: 120.760989},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>San Nicolas Public Market</b><br/>San Nicolas, Pangasinan</div>"
-    },
-      {
-    coords:{lat: 16.109914, lng: 120.542999},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Pozorrubio Fresh Food Market</b><br/>Rizal Street, Pozorrubio, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.893777, lng: 120.629866},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Rosales Public Market</b><br/>General Luna St, Rosales, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.933642, lng: 120.345530},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>San Carlos City New Public Market</b><br/>San Carlos City, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.119679, lng: 120.404236},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>San Fabian Public Market</b><br/>101 Sevidal Street, San Fabian, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.064714, lng: 120.670090},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>San Manuel Public Market</b><br/>San Manuel, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.173996, lng: 120.512224},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Municipal Public Satellite Market of Sison</b><br/>Provincial Rd, Sison, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.997109, lng: 120.405727},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Sta.Barbara Public Market</b><br/>Santa Barbara, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 16.064790, lng: 120.096513},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Sual Public Market</b><br/>Sual, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.824049, lng: 120.331210},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Urbiztondo Public Market</b><br/>Urbiztondo, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.928828, lng: 120.842530},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>Umingan Public Market</b><br/>Umingan, Pangasinan</div>"
-    },
-    {
-    coords:{lat: 15.975311, lng: 120.570307},
-    iconImage: "markers/market.png",
-    content: "<div style='float:center'></div><div style='float:center; padding: 2px;'><b>New Urdaneta Public Market</b><br/>15 Mcarthur, Urdaneta City, Pangasinan</div>"
-    },
-    ];
+    L.marker(e.latlng).addTo(map)
+        .bindPopup("You are within " + radius + " meters from this point").openPopup();
 
-    // Loop through markers
-    for(var i = 0;i < markers.length;i++){
-        // Add marker
-        addMarker(markers[i]);
+    L.circle(e.latlng, radius).addTo(map);
     }
 
-    // Add marker Function
-    function addMarker(props){
-       var marker = new google.maps.Marker({
-        position:props.coords,
-        map:map,
-        icon:props.iconImage
-      });
-    
-    // Check content
-    if(props.content){
-        var infoWindow = new google.maps.InfoWindow({
-            content:props.content, 
-            maxWidth: 250, 
-            maxHeight: 250
-        });
-
-    marker.addListener('click', function(){
-            infoWindow.open(map, marker);
-        });
-
-    
-    // Searchbox
-    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
-
-    //Place change event on search box
-    google.maps.event.addListener(searchBox, 'places_changed', function(){
-      
-      //console.log(searchBox.getPlaces());
-      var places = searchBox.getPlaces();
-
-      //bound
-      var bounds = new google.maps.LatLngBounds();
-      var i, place;
-
-      for (i=0; place=places[i]; i++) {
-
-        //console.log(place.geometry.location);
-        bounds.extend(place.geometry.location);
-      }
-      map.fitBounds(bounds); //fit to bound
-      map.setZoom(15); //set zoom
-        });  
-        }  
+    map.on('locationfound', onLocationFound);
+    //LOCATION ERROR
+    function onLocationError(e) {
+    alert(e.message);
     }
-}
-</script>
-    <script src="https://maps.googleapis.com/maps/api/js?AIzaSyBoni5F8Ws5DHq-ujaUuQhK57iWGYxPz8I&libraries=places&callback=initMap"
-        async defer></script>
-</body>
+
+    map.on('locationerror', onLocationError);
+
+    var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize:     [50, 50],
+        iconAnchor:   [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [-3, -76]
+    }
+    });
+
+    var marketIcon = new LeafIcon({iconUrl: 'markers/market.png'});
+
+      L.icon = function (options) {
+    return new L.Icon(options);
+    };
+
+    L.marker([16.392548, 119.895615], {icon: marketIcon}).addTo(map).bindPopup("<b>Rullan Apartelle</b><br>Anda, Pangasinan");
+    </script>
+  </body>
 </html>
