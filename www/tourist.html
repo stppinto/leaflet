@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
@@ -113,13 +113,122 @@
     }
     });
 
-    var gasIcon = new LeafIcon({iconUrl: 'markers/gas.png'});
+    var beachIcon = new LeafIcon({iconUrl: 'markers/beach.png'});
+    var treeIcon = new LeafIcon({iconUrl: 'markers/tree.png'});
+    var houseIcon = new LeafIcon({iconUrl: 'markers/house.png'});
+    var churchIcon = new LeafIcon({iconUrl: 'markers/church.png'});
+    var parkIcon = new LeafIcon({iconUrl: 'markers/park.png'});
+    var fallsIcon = new LeafIcon({iconUrl: 'markers/falls.png'});
+    var mountainIcon = new LeafIcon({iconUrl: 'markers/mountain.png'});
+    var forestIcon = new LeafIcon({iconUrl: 'markers/forest.png'});
+    var caveIcon = new LeafIcon({iconUrl: 'markers/cave.png'});
+    var crossIcon = new LeafIcon({iconUrl: 'markers/cross.png'});
+    var hotspringIcon = new LeafIcon({iconUrl: 'markers/hotspring.png'});
+    var riverIcon = new LeafIcon({iconUrl: 'markers/river.png'});
+    var bonsaiIcon = new LeafIcon({iconUrl: 'markers/bonsai.png'});
+    var lighthouseIcon = new LeafIcon({iconUrl: 'markers/lighthouse.png'});
+    var poolIcon = new LeafIcon({iconUrl: 'markers/pool.png'});
+    var auditoriumIcon = new LeafIcon({iconUrl: 'markers/auditorium.png'});
+    var monumentIcon = new LeafIcon({iconUrl: 'markers/monument.png'});
+    var damIcon = new LeafIcon({iconUrl: 'markers/dam.png'});
+    var electricityIcon = new LeafIcon({iconUrl: 'markers/electricity.png'});
+    var powerplantIcon = new LeafIcon({iconUrl: 'markers/powerplant.png'});
+    var flowerIcon = new LeafIcon({iconUrl: 'markers/flower.png'});
+    var fountainIcon = new LeafIcon({iconUrl: 'markers/fountain.png'});
+    var farmIcon = new LeafIcon({iconUrl: 'markers/farm.png'});
 
       L.icon = function (options) {
     return new L.Icon(options);
     };
 
-    L.marker([16.392548, 119.895615], {icon: gasIcon}).addTo(map).bindPopup("<img src='hotel/anda.jpg' width=280 height=200><br><b>Rullan Apartelle</b><br>Anda, Pangasinan");
+    L.marker([16.134942, 119.776195], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/agno2.jpg' width=280 height=200><br><b>Agno Umbrella Rocks</b><br>Agno, Pangasinan");
+    L.marker([16.204451, 120.040899], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/alaminos.jpg' width=280 height=200><br><b>Hundred Islands National Park</b><br>Alaminos, Pangasinan");
+    L.marker([16.170394, 120.013900], {icon: treeIcon}).addTo(map).bindPopup("<img src='tourist/alaminos3.jpg' width=280 height=200><br><b>Bued Mangrove Park</b><br>Bued, Alaminos, Pangasinan");
+    L.marker([16.156475, 119.979322], {icon: houseIcon}).addTo(map).bindPopup("<img src='tourist/alaminos4.jpg' width=280 height=200><br><b>Alaminos Ancestral Houses</b><br>San Jose Dr, Poblacion, Alaminos, Pangasinan");
+    L.marker([16.179467, 120.045994], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/alaminos8.jpg' width=280 height=200><br><b>Bolo Beach</b><br>Pandan, Alaminos, Pangasinan");
+    L.marker([16.155353, 119.978501], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/alaminos9.jpg' width=280 height=200><br><b>St. Joseph Cathedral</b><br>CP Garcia St, Poblacion, Alaminos, Pangasinan");
+    L.marker([16.155221, 119.979284], {icon: parkIcon}).addTo(map).bindPopup("<img src='tourist/alaminos10.jpg' width=280 height=200><br><b>Alaminos City Plazas</b><br>Poblacion, Alaminos, Pangasinan");
+    L.marker([16.313982, 120.018088], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/anda.jpg' width=280 height=200><br><b>Tanduyong Island</b><br>Tondol, Anda, Pangasinan");
+    L.marker([16.068085, 119.859300], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/Burgos.jpg' width=280 height=200><br><b>Sangbay Falls</b><br>Burgos, Pangasinan");
+    L.marker([15.994848, 119.760493], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/Burgos2.jpg' width=280 height=200><br><b>Death Pool</b><br>Burgos, Pangasinan");
+    L.marker([15.988863, 119.763324], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/Burgos3.jpg' width=280 height=200><br><b>Cabongaoan Beach</b><br>Burgos, Pangasinan");
+    L.marker([15.834003, 120.173884], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/aguilar.jpg' width=280 height=200><br><b>Mapita Viewdeck</b><br>Aguilar, Pangasinan");
+    L.marker([15.849193, 120.172866], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/aguilar2.jpg' width=280 height=200><br><b>Mapita falls</b><br>Aguilar, Pangasinan");
+    L.marker([16.246389, 119.925988], {icon: forestIcon}).addTo(map).bindPopup("<img src='tourist/bani.jpg' width=280 height=200><br><b>Bangrin Mangrove Farm (Marine Protected Area)</b><br>Bani, Pangasinan");
+    L.marker([16.221577, 119.832770], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/bani2.jpg' width=280 height=200><br><b>Busay Falls</b><br>Bani, Pangasinan");
+    L.marker([16.286433, 119.791190], {icon: caveIcon}).addTo(map).bindPopup("<img src='tourist/bani3.jpg' width=280 height=200><br><b>Nalsoc Caves</b><br>Bani, Pangasinan");
+    L.marker([16.254424, 119.775566], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/bani4.jpg' width=280 height=200><br><b>Surip Beach</b><br>Bani, Pangasinan");
+    L.marker([16.254531, 119.781905], {icon: crossIcon}).addTo(map).bindPopup("<img src='tourist/bani5.jpg' width=280 height=200><br><b>The Redeemer's Cros</b><br>Bani, Pangasinan");
+    L.marker([16.276778, 119.772732], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/bani6.jpg' width=280 height=200><br><b>Colayo White Sand Beach</b><br>Bani, Pangasinan");
+    L.marker([16.226717, 119.774709], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/bani7.jpg' width=280 height=200><br><b>Tobong Beach</b><br>Bani, Pangasinan");
+    L.marker([15.865570, 120.687217], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/Balungao.jpg' width=280 height=200><br><b>Balungao Zipline</b><br>Napudot Rd, Balungao, Pangasinan");
+    L.marker([15.867284, 120.686312], {icon: hotspringIcon}).addTo(map).bindPopup("<img src='tourist/Balungao2.jpg' width=280 height=200><br><b>Balungao Hot and Cold Springs</b><br>Balungao, Pangasinan");
+    L.marker([15.888424, 120.239044], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/aguilar3.jpg' width=280 height=200><br><b>St Joseph the Patriarch Parish</b><br>Romulo Hwy, Aguilar, Pangasinan");
+    L.marker([16.005793, 120.668522], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/asingan.jpg' width=280 height=200><br><b>St. Louis Bertrand Parish Church</b><br>Asingan, Pangasinan");
+    L.marker([15.849499, 120.398215], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/Basista.jpg' width=280 height=200><br><b>Mary Help of Christians Parish</b><br>Basista, Pangasinan");
+    L.marker([15.810071, 120.457797], {icon: riverIcon}).addTo(map).bindPopup("<img src='tourist/  width=280 height=200><br><b>Bayambang riverbanks</b><br>Bayambang, Pangasinan");
+    L.marker([15.809272, 120.456964], {icon: fountainIcon}).addTo(map).bindPopup("<img src='tourist/Bayambang.jpg' width=280 height=200><br><b>Dolphin fountain</b><br>Bayambang, Pangasinan");
+    L.marker([15.811688, 120.452408], {icon: forestIcon}).addTo(map).bindPopup("<img src='tourist/Bayambang2.jpg' width=280 height=200><br><b>Little Baguio</b><br>Bayambang, Pangasinan");
+    L.marker([16.045570, 120.593012], {icon: bonsaiIcon}).addTo(map).bindPopup("<img src='tourist/binalonan3.jpg' width=280 height=200><br><b>Binalonan Bonsai Park</b><br>Binalonan, Pangasinan");
+    L.marker([16.045074, 120.269646], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/binmaley.jpg' width=280 height=200><br><b>Binmaley Beach</b><br>Binmaley, Pangasinan");
+    L.marker([16.305920, 119.860193], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/bolinao.jpg' width=280 height=200><br><b>Bolinao Falls 1</b><br>Samang Norte, Bolinao Trail, Bolinao, Pangasinan");
+    L.marker([16.307791, 119.865332], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/bolinao2.jpg' width=280 height=200><br><b>Bolinao Falls 2</b><br>Samang Norte, Bolinao Pangasinan");
+    L.marker([16.307500, 119.869847], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/bolinao3.jpg' width=280 height=200><br><b>Bolinao Falls 3</b><br>River, Bolinao, Bolinao Pangasinan");
+    L.marker([16.343568, 119.803805], {icon: caveIcon}).addTo(map).bindPopup("<img src='tourist/bolinao4.jpg' width=280 height=200><br><b>Enchanted Cave</b><br>Patar Rd, Bolinao, Pangasinan");
+    L.marker([16.302821, 119.780884], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/bolinao5.jpg' width=280 height=200><br><b>Patar Beach Bolinao</b><br>West Philippine Sea");
+    L.marker([16.307131, 119.785595], {icon: lighthouseIcon}).addTo(map).bindPopup("<img src='tourist/bolinao6.jpg' width=280 height=200><br><b>Cape Bolinao Lighthouse</b><br>Bolinao, Pangasinan");
+    L.marker([15.986206, 120.223758], {icon: riverIcon}).addTo(map).bindPopup("<img src='tourist/bugallon.jpg' width=280 height=200><br><b>Bugallon Riverside</b><br>Bugallon, Pangasinan");
+    L.marker([15.936904, 120.173167], {icon: crossIcon}).addTo(map).bindPopup("<img src='tourist/bugallon2.jpg' width=280 height=200><br><b>Mt. Zion Pilgrim Mountain</b><br>Bugallon, Pangasinan");
+    L.marker([16.060182, 120.339364], {icon: riverIcon}).addTo(map).bindPopup("<img src='tourist/dagupan.jpg' width=280 height=200><br><b>Dawel River Cruise</b><br>Bonuan, Dagupan, Pangasinan");
+    L.marker([16.038359, 120.342382], {icon: farmIcon}).addTo(map).bindPopup("<img src='tourist/dagupan2.jpg' width=280 height=200><br><b>LIWANAG FARMS</b><br>Bonuan, Dagupan City, Pangasinan");
+    L.marker([15.931401, 119.783485], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/dasol.jpg' width=280 height=200><br><b>Tambobong Beach</b><br>Dasol, Pangasinan");
+    L.marker([15.978763, 119.838032], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/dasol2.jpg' width=280 height=200><br><b>Malacapas Viewdeck</b><br>Dasol, Pangasinan");
+    L.marker([15.986666, 119.908046], {icon: poolIcon}).addTo(map).bindPopup("<img src='tourist/dasol3.jpg' width=280 height=200><br><b>Dasoland</b><br>Dasol, Pangasinan");
+    L.marker([15.843752, 119.912605], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/infanta.jpg' width=280 height=200><br><b>Payong Payong</b><br>Infanta, Pangasinan");
+    L.marker([15.814435, 119.882771], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/infanta2.jpg' width=280 height=200><br><b>Sabangan Island</b><br>Nayom, Infanta, Pangasinan");
+    L.marker([15.983761, 120.132955], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/labrador2.jpg' width=280 height=200><br><b>Tinakayanan Falls</b><br>Labrador, Pangasinan");
+    L.marker([116.030403, 120.125505], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/labrador3.jpg' width=280 height=200><br><b>Tandoc Falls</b><br>Labrador, Pangasinan");
+    L.marker([16.036564, 120.231107], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/llingayen.jpg' width=280 height=200><br><b>Lingayen Baywalk</b><br>Poblacion, Lingayen, Pangasinan");
+    L.marker([16.033395, 120.228822], {icon: auditoriumIcon}).addTo(map).bindPopup("<img src='tourist/llingayen2.jpg' width=280 height=200><br><b>Sison Auditorium</b><br>Poblacion, Lingayen, Pangasinan");
+    L.marker([16.033516, 120.231576], {icon: auditoriumIcon}).addTo(map).bindPopup("<img src='tourist/llingayen3.jpg' width=280 height=200><br><b>Pangasinan Provincial Capitol</b><br>Alvear E, Poblacion, Lingayen, Pangasinan");
+    L.marker([16.034216, 120.230984], {icon: parkIcon}).addTo(map).bindPopup("<img src='tourist/llingayen4.jpg' width=280 height=200><br><b>Veterans Memorial Park</b><br>Poblacion, Lingayen, Pangasinan");
+    L.marker([16.034627, 120.232337], {icon: auditoriumIcon}).addTo(map).bindPopup("<img src='tourist/llingayen5.jpg' width=280 height=200><br><b>Urduja House</b><br>Poblacion, Lingayen, Pangasinan");
+    L.marker([16.030929, 120.232481], {icon: parkIcon}).addTo(map).bindPopup("<img src='tourist/llingayen6.jpg' width=280 height=200><br><b>Lingayen Park</b><br>Maramba Blvd, Lingayen, Pangasinan");
+    L.marker([16.035801, 120.214175], {icon: poolIcon}).addTo(map).bindPopup("<img src='tourist/llingayen7.jpg' width=280 height=200><br><b>Aquatica Marina Water Park</b><br>Don Martin Domingo Street, Lingayen, Pangasinan");
+    L.marker([16.009583, 119.938403], {icon: caveIcon}).addTo(map).bindPopup("<img src='tourist/mabini.jpg' width=280 height=200><br><b>Sto. Rosario Cave</b><br>San Pedro, Mabini, Pangasinan");
+    L.marker([16.006685, 119.942797], {icon: caveIcon}).addTo(map).bindPopup("<img src='tourist/mabini2.jpg' width=280 height=200><br><b>Cabalyorisa Cave</b><br>Brgy. Barlo, Mabini, Pangasinan");
+    L.marker([16.041505, 119.941733], {icon: hotspringIcon}).addTo(map).bindPopup("<img src='tourist/' width=280 height=200><br><b>Ambetel Natural Spring</b><br>De Guzman, Mabini, Pangasinan");
+    L.marker([16.052965, 119.959057], {icon: caveIcon}).addTo(map).bindPopup("<img src='tourist/mabini3.jpg' width=280 height=200><br><b>Cacupangan Cave</b><br>Mabini, Pangasinan");
+    L.marker([16.044011, 120.488223], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/Manaoag.png' width=280 height=200><br><b>Minor Basilica of Our Lady of the Rosary of Manaoag</b><br>Milo St, Manaoag, Pangasinan");
+    L.marker([16.069809, 120.404342], {icon: monumentIcon}).addTo(map).bindPopup("<img src='tourist/Mangaldan.jpg' width=280 height=200><br><b>Rizal Monument </b><br>Rizal Ave, Mangaldan, Pangasinan");
+    L.marker([15.669833, 120.239739], {icon: hotspringIcon}).addTo(map).bindPopup("<img src='tourist/mangatarem.png' width=280 height=200><br><b>Manleluag National Park</b><br>Mangatarem, Pangasinan");
+    L.marker([15.709304, 120.332950], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/mangatarem2.jpg' width=280 height=200><br><b>Bundok Sapatos</b><br>Mangatarem, Pangasinan");
+    L.marker([16.026710, 120.453674], {icon: parkIcon}).addTo(map).bindPopup("<img src='tourist/mapandan.jpg' width=280 height=200><br><b>Mapandan Peoples Park</b><br>Municipal St, Mapandan, Pangasinan");
+    L.marker([16.058912, 120.826915], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/Natividad.jpg' width=280 height=200><br><b>Sky Plaza</b><br>Natividad, Pangasinan");
+    L.marker([16.081437, 120.850661], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/Natividad2.jpg' width=280 height=200><br><b>Takup-Takup Falls</b><br>Natividad, Pangasinan");
+    L.marker([16.068898, 120.840735], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/Natividad3.jpeg' width=280 height=200><br><b>Bachelor Nadividad Waterfalls</b><br>Natividad, Pangasinan");
+    L.marker([15.986232, 120.854041], {icon: riverIcon}).addTo(map).bindPopup("<img src='tourist/san quintin.jpg' width=280 height=200><br><b>Dipalo River</b><br>San Quintin, Pangasinan");
+    L.marker([15.850432, 120.626269], {icon: crossIcon}).addTo(map).bindPopup("<img src='tourist/rosales.jpg' width=280 height=200><br><b>Our Lady of Rosales Grotto</b><br>Rosales, Pangasinan");
+    L.marker([15.926446, 120.347133], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/san carlos2.jpg' width=280 height=200><br><b>Saint Dominic Parish Church</b><br>Malong St, San Carlos City, Pangasinan");
+    L.marker([16.132327, 120.398955], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/san fabian.png' width=280 height=200><br><b>San Fabian Beach</b><br>San Fabian, Pangasinan");
+    L.marker([16.147913, 120.681166], {icon: damIcon}).addTo(map).bindPopup("<img src='tourist/san manuel.jpg' width=280 height=200><br><b>San Roque Dam</b><br>San Manuel, Pangasinan");
+    L.marker([16.061312, 120.652057], {icon: electricityIcon}).addTo(map).bindPopup("<img src='tourist/san manuel2.jpg' width=280 height=200><br><b>National Grid Corporation of the Philippines</b><br>San Manuel, Pangasinan");
+    L.marker([16.117366, 120.809665], {icon: riverIcon}).addTo(map).bindPopup("<img src='tourist/san nicolas.jpg' width=280 height=200><br><b>Cabalisian River</b><br>San Nicolas, Pangasinan");
+    L.marker([16.179992, 120.558942], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/sison.jpg' width=280 height=200><br><b>Antong Fallse</b><br>Sison, Pangasinan");
+    L.marker([16.071504, 120.081336], {icon: mountainIcon}).addTo(map).bindPopup("<img src='tourist/sual.jpg' width=280 height=200><br><b>Sual View Deck</b><br>Sual, Pangasinan");
+    L.marker([16.140355, 120.106501], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/sual2.jpg' width=280 height=200><br><b>Masamirey White Sand Beach</b><br>Sual, Pangasinan");
+    L.marker([16.115793, 120.111139], {icon: beachIcon}).addTo(map).bindPopup("<img src='tourist/sual3.jpg' width=280 height=200><br><b>Cabalitian Island</b><br>Sual, Pangasinan");
+    L.marker([16.124288, 120.100459], {icon: powerplantIcon}).addTo(map).bindPopup("<img src='tourist/sual4.jpg' width=280 height=200><br><b>Sual Power Statio</b><br>Barangay Pangascasan, Sual, Pangasinan");
+    L.marker([15.973414, 120.757920], {icon: flowerIcon}).addTo(map).bindPopup("<img src='tourist/tayug.jpg' width=280 height=200><br><b>Tayug Sunflower Eco Park</b><br>Tayug, Pangasinan");
+    L.marker([15.973828, 120.757879], {icon: flowerIcon}).addTo(map).bindPopup("<img src='tourist/tayug2s.jpg' width=280 height=200><br><b>Allied Botanical Corporation</b><br>Tayug, Pangasinan");
+    L.marker([16.027753, 120.744127], {icon: flowerIcon}).addTo(map).bindPopup("<img src='tourist/tayug3.jpg' width=280 height=200><br><b>Tayug Plaza</b><br>Tayug, Pangasinan");
+    L.marker([15.959214, 120.894889], {icon: fallsIcon}).addTo(map).bindPopup("<img src='tourist/umingan.jpg' width=280 height=200><br><b>Diket Falls</b><br>Umingan, Pangasinan");
+    L.marker([15.992512, 120.605876], {icon: flowerIcon}).addTo(map).bindPopup("<img src='tourist/Urdaneta2.jpg' width=280 height=200><br><b>Uncle Cacti- Urdaneta</b><br>#157 Brgy. Bolaoen, Urdaneta City, Pangasinan");
+    L.marker([15.975400, 120.564446], {icon: auditoriumIcon}).addTo(map).bindPopup("<img src='tourist/Urdaneta3.jpg' width=280 height=200><br><b>Museo de Urdaneta</b><br>#157 Brgy. Bolaoen, Urdaneta City, Pangasinan");
+    L.marker([16.051930, 120.554223], {icon: flowerIcon}).addTo(map).bindPopup("<img src='tourist/Laoac.jpg' width=280 height=200><br><b>Pulido's Garden</b><br>Laoac, Pangasinan");
+    L.marker([16.050956, 120.547518], {icon: churchIcon}).addTo(map).bindPopup("<img src='tourist/Laoac2.jpg' width=280 height=200><br><b>Holy Cross Parish</b><br>Laoac, Pangasinan");
+    L.marker([15.900672, 120.5865418], {icon: parkIcon}).addTo(map).bindPopup("<img src='tourist/villasis.jpg' width=280 height=200><br><b>Villasis Town Park</b><br>Villasis, Pangasinan");
+
     </script>
   </body>
 </html>
